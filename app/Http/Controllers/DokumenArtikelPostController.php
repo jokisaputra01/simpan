@@ -22,7 +22,6 @@ class DokumenArtikelPostController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
         $validateData = $request->validate([
             'nama' => 'required',
             'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt,png,gif,jpg,jpeg|max:5048',
@@ -30,12 +29,8 @@ class DokumenArtikelPostController extends Controller
             'artikel_id' => 'required',
         ]);
 
-        if($request->hasFile('file')){
-            $validateData['file'] = $request->file('file')->store('files');
-        }
-
-        dokumenartikel::create($validateData);
-        return 'ok';
+        
+        
     }
     
     public function edit(dokumenartikel $dokumenartikel)
@@ -59,8 +54,7 @@ class DokumenArtikelPostController extends Controller
             $filePath = public_path() . '/files/uploads/';
             $file->move($filePath, $filename);
         }
-         dokumenartikel::where('id', $dokumenartikel->id)
-            ->update($validateData);
+        dokumenartikel::where('id', $dokumenartikel->id)->update($validateData);
     }
 
     public function destroy(dokumenartikel $dokumenartikel)
