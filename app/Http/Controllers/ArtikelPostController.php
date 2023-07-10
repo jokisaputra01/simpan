@@ -31,7 +31,6 @@ class ArtikelPostController extends Controller
             'judul' => 'required',
             'sub_judul' => 'required',
             'status' => 'nullable',
-
             'isi_artikel' => 'required|nullable',
             'tanggal_dibuat' => 'required',
             'dibaca' => 'nullable',
