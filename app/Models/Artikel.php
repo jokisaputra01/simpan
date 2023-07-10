@@ -12,7 +12,7 @@ class Artikel extends Model
     protected $fillable = [
         'judul',
         'sub_judul',
-        'status_aktif',
+        'status',
         'isi_artikel',
         'tanggal_dibuat',
         'dibaca',
@@ -20,12 +20,12 @@ class Artikel extends Model
         'sub_kategori_id',
     ];
 
-    protected $casts = [
-        'status_aktif' => 'boolean',
-    ];
-
-    public function subKategories(){
+    public function subKategori(){
         return $this->belongsTo(SubKategori::class);
+    }
+
+    public function dokumenartikels(){
+        return $this->hasMany(dokumenartikel::class);
     }
 
 }

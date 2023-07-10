@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('sub_judul');
-            $table->boolean('status_aktif')->default(false);
+            $table->tinyInteger('status')->default('0')->comment('1=aktif,0=non-aktif');
             $table->longText('isi_artikel')->nullable();
             $table->date('tanggal_dibuat');
-            $table->string('dibaca')->nullable();
+            $table->string('dibaca')->nullable();   
             $table->string('tag')->nullable();
             $table->foreignId('sub_kategori_id')->constrained('sub_kategoris');
             // $table->foreignId('opede_id')->constrained('opedes');
