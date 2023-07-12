@@ -7,5 +7,38 @@
         </div>
     </div>
     <a href="/dashboard/dokumenartikel/create" class="btn btn-primary">Create Dokumen Artikel</a>
-    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Judul Artikel</th>
+                <th scope="col">Keterangan </th>
+                <th scope="col">Foto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($dokumentArtikel as $dokumen)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $dokumen->nama }}</td>
+                    <td>{{ $dokumen->artikel->judul ?? '' }}</td>
+                    <td>{{ $dokumen->keterangan }}</td>
+                    <td>
+                        <img src="{{ asset('storage/' . $dokumen->file) }}" alt="" class="w-25 h-25">
+                    </td>
+                    <td>
+                        <a href="{{ route('dokumenartikel.edit', $dokumen->id) }}" class="badge bg-warning"><span
+                                data-feather="edit">Edit</span></a>
+                        <form action="{{ route('dokumenartikel.destroy', $dokumen->id) }}" method="POST" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="badge bg-danger border-0" onclick="return confirm('Are You Sure?')"> <span
+                                    data-feather="x-circle">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection
