@@ -25,7 +25,7 @@ class Artikel extends Model
     }
 
     public function dokumenartikels(){
-        return $this->hasMany(dokumenartikel::class);
+        return $this->hasMany(DokumenArtikel::class);
     }
 
 }
